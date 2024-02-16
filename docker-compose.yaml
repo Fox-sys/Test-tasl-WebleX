@@ -1,0 +1,15 @@
+version: "3"
+services:
+  db:
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_PASSWORD=tiger
+      - POSTGRES_USER=scott
+      - POSTGRES_DB=test_db
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+    image: postgres:14.3
+
+volumes:
+  postgres_volume:
