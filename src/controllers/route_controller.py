@@ -26,17 +26,13 @@ class RouteController:
             data = await file.read()
             reader = csv.reader(io.StringIO(data.decode()))
             points = [Point(**(lambda r: {'lat': float(r[1]), 'lng': float(r[2])})(row)) for row in list(reader)[1:]]
-            print(points)
             Config().set_active_csv(points)
-        print(Config().ACTIVE_CSV)
         if Config().ACTIVE_CSV is None:
             return {'error': 'Используйте ?format=csv, что бы добавить новый файл'}
         optimal_way = find_shortest_path(Config().ACTIVE_CSV)
         route = RouteAdd()
         route_id = await RouteRepository.add(route, optimal_way)
         route = await RouteRepository.get_by_id(route_id)
-        print(dir(route))
-        print(route.points)
         return RouteGet(id=route.id, points=optimal_way)
 
     async def ping(self):
