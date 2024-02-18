@@ -25,7 +25,7 @@ def main():
     if args[1] not in commands:
         return 'Такой команды не существует, список доступных команд: \n' + "\n".join(commands)
     try:
-        module = importlib.import_module(f'commands.{args[1]}')
+        module = importlib.import_module(f'src.commands.{args[1]}')
     except ModuleNotFoundError:
         return 'Это не команда, это папка)'
     except Exception:

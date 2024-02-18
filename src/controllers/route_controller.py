@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends
 
 from src.models.Route import RouteAdd
-from src.repositories.RouteRepository import RouteRepository
+from src.repositories.route_repository import RouteRepository
 
 
 class RouteController:
