@@ -6,6 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 class Config:
     _instance = None
+    ACTIVE_CSV = None
 
     def __init__(self):
         env = environ.Env(
@@ -25,10 +26,14 @@ class Config:
         self.POSTGRES_HOST = env('POSTGRES_HOST')
         self.POSTGRES_PORT = env('POSTGRES_PORT')
         self.BASE_DIR = BASE_DIR
+        self.MEDIA_URL = BASE_DIR / 'media'
 
     def get_async_connection(self):
         return (f'postgresql+asyncpg://{self.POSTGRES_LOGIN}:{self.POSTGRES_PASS}@'
                 f'{self.POSTGRES_HOST}:{self.POSTGRES_PORT}/{self.POSTGRES_DATABASE}')
+
+    def set_active_csv(self, value):
+        self.ACTIVE_CSV = value
 
     @classmethod
     def __new__(cls, *args, **kwargs):
