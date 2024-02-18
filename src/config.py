@@ -20,9 +20,9 @@ class Config:
 
         environ.Env.read_env(BASE_DIR / '.env')
         self.DEBUG = env('DEBUG')
-        self.POSTGRES_LOGIN = env('POSTGRES_LOGIN')
-        self.POSTGRES_PASS = env('POSTGRES_PASS')
-        self.POSTGRES_DATABASE = env('POSTGRES_DATABASE')
+        self.POSTGRES_LOGIN = env('POSTGRES_USER')
+        self.POSTGRES_PASS = env('POSTGRES_PASSWORD')
+        self.POSTGRES_DATABASE = env('POSTGRES_DB')
         self.POSTGRES_HOST = env('POSTGRES_HOST')
         self.POSTGRES_PORT = env('POSTGRES_PORT')
         self.BASE_DIR = BASE_DIR
